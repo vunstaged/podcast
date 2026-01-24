@@ -26,6 +26,14 @@ const episodes: Episode[] = [
     date: '2026-01-08',
     duration: '45:12',
     tags: ['tech', 'trends']
+  },
+  {
+    id: 'ep-03',
+    title: 'The Future of People',
+    description: 'A deep dive into emerging technologies and trends.',
+    date: '2026-01-11',
+    duration: '45:12',
+    tags: ['tech', 'trends']
   }
 ]
 
