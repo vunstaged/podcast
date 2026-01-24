@@ -20,7 +20,7 @@ const codeStyles = {
   padding: 4,
   backgroundColor: '#FFF4DB',
   fontSize: '1.25rem',
-  borderRadius: 5git
+  borderRadius: 5
 }
 
 const NotFoundPage: React.FC<PageProps> = () => {
