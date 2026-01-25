@@ -66,7 +66,8 @@ jobs:
       - name: Move build output into /podcast folder
         run: |
           mkdir -p public/podcast
-          mv public/* public/podcast/
+          shopt -s extglob
+          mv public/!(podcast) public/podcast/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
