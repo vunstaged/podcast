@@ -57,10 +57,17 @@ const EpisodesList = ({
 
             <div className='mt-5 flex justify-between items-center'>
               <span className='text-sm text-gray-500'>{episode.date}</span>
-
               <button
+                className='
+                w-12 h-12 rounded-full bg-black text-white
+                flex items-center justify-center shadow-lg
+                transition-transform duration-150 ease-out
+                hover:scale-105
+                disabled:opacity-50
+                disabled:pointer-events-none
+                active:scale-90
+                disabled:active:scale-100'
                 onClick={() => handlePlayPause(episode)}
-                className='w-12 h-12 rounded-full bg-black text-white flex items-center justify-center shadow-lg'
               >
                 {activeEpisode?.id === episode.id && playing ? (
                   <PauseIcon />
