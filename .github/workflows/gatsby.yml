@@ -47,26 +47,22 @@ jobs:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
 
-      - name: Restore cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            public
-            .cache
-          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-gatsby-build-
-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
       - name: Build with Gatsby (prefix paths)
         run: ${{ steps.detect-package-manager.outputs.manager }} run build --prefix-paths
 
+      - name: Move build output into /podcast folder
+        run: |
+          mkdir -p public/podcast
+          shopt -s extglob
+          mv public/!(podcast) public/podcast/
+
       - name: Prepare deploy folder
         run: |
           mkdir -p deploy
-          cp -R public/podcast/* deploy/
+          cp -R public/podcast/. deploy/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
