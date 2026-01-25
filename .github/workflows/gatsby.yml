@@ -63,16 +63,15 @@ jobs:
       - name: Build with Gatsby (prefix paths)
         run: ${{ steps.detect-package-manager.outputs.manager }} run build --prefix-paths
 
-      - name: Move build output into /podcast folder
+      - name: Prepare deploy folder
         run: |
-          mkdir -p public/podcast
-          shopt -s extglob
-          mv public/!(podcast) public/podcast/
+          mkdir -p deploy
+          cp -R public/podcast/* deploy/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./deploy
 
   deploy:
     environment:
