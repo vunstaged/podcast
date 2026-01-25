@@ -6,7 +6,6 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.yourdomain.tld`
   },
   graphqlTypegen: true,
-  pathPrefix: '/podcast',
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-tsconfig-paths',
