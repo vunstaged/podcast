@@ -7,7 +7,6 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   pathPrefix: '/podcast',
-  assetPrefix: '/podcast',
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-tsconfig-paths',
