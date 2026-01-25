@@ -9,8 +9,9 @@ const config: GatsbyConfig = {
   pathPrefix: '/podcast',
   plugins: [
     'gatsby-plugin-postcss',
-    'gatsby-plugin-image',
+    'gatsby-plugin-tsconfig-paths',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-image',
 
     {
       resolve: 'gatsby-plugin-typescript',
