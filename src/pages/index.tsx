@@ -13,9 +13,6 @@ const IndexPage: FC<PageProps> = () => {
   const [activeEpisode, setActiveEpisode] = useState<Episode | null>(null)
   const [playing, setPlaying] = useState(false)
 
-  const getEpisodeUrl = (id: string) =>
-    `https://cdn.vunstaged.com/podcast/${id}.mp3`
-
   return (
     <main className='min-h-screen bg-gray-50 text-gray-900 pb-24'>
       <section className='max-w-7xl mx-auto px-6 py-10'>
