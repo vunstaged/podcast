@@ -5,33 +5,7 @@ import PodcastPlayer from '@components/PodcastPlayer'
 import EpisodesList from '@components/EpisodesList'
 import PodcastStats from '@components/PodcastStats'
 import PodcastHero from '@components/PodcastHero'
-
-const episodes: Episode[] = [
-  {
-    id: '20',
-    title: 'Welcome to the Podcast',
-    description: 'We introduce the show, the hosts, and what to expect.',
-    date: '2026-01-01',
-    duration: '28:15',
-    topics: ['intro', 'hosts']
-  },
-  {
-    id: '22',
-    title: 'The Future of Tech',
-    description: 'A deep dive into emerging technologies and trends.',
-    date: '2026-01-08',
-    duration: '45:12',
-    topics: ['tech', 'trends']
-  },
-  {
-    id: '23',
-    title: 'The Future of People',
-    description: 'A deep dive into emerging technologies and trends',
-    date: '2026-01-11',
-    duration: '45:12',
-    topics: ['tech', 'trends']
-  }
-]
+import episodes from '@shared/resources/episodes.json'
 
 const IndexPage: FC<PageProps> = () => {
   const totalEpisodes = episodes.length
@@ -69,7 +43,7 @@ const IndexPage: FC<PageProps> = () => {
 
       <PodcastPlayer
         episode={activeEpisode}
-        audioUrl={activeEpisode ? getEpisodeUrl(activeEpisode.id) : null}
+        audioUrl={activeEpisode?.audioUrl}
         playing={playing}
         setPlaying={setPlaying}
       />

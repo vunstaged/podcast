@@ -9,7 +9,7 @@ type PodcastStatsProps = {
 const PodcastStats = ({ totalEpisodes, latestEpisode }: PodcastStatsProps) => {
   return (
     <div className='bg-white rounded-2xl shadow-md p-6 w-full md:w-1/3'>
-      <h2 className='font-semibold text-lg'>Podcast Stats</h2>
+      <h2 className='font-semibold text-lg'>Podcast Overview</h2>
       <div className='mt-4 space-y-3'>
         <div className='flex justify-between'>
           <span className='text-gray-600'>Episodes</span>

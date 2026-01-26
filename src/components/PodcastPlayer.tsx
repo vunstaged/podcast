@@ -10,14 +10,14 @@ import PlayerSlider from '@components/PlayerSlider'
 
 type Props = {
   episode: Episode | null
-  audioUrl: string | null
+  audioUrl?: string | null
   playing: boolean
   setPlaying: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const PodcastPlayer: FC<Props> = ({
   episode,
-  audioUrl,
+  audioUrl = null,
   playing,
   setPlaying
 }) => {
@@ -165,21 +165,23 @@ const PodcastPlayer: FC<Props> = ({
           <PlayerSlider value={volume} max={1} onChange={setVolume} />
         </div>
 
-        <button
-          className='
-          w-12 h-12 rounded-full bg-black text-white
-          flex items-center justify-center shadow-lg
-          transition-transform duration-150 ease-out
-          hover:scale-105
-          disabled:opacity-50
-          disabled:pointer-events-none
-          active:scale-90
-          disabled:active:scale-100'
-          onClick={() => setPlaying(p => !p)}
-          disabled={!audioUrl}
-        >
-          {playing ? <PauseIcon /> : <PlayArrowIcon />}
-        </button>
+        <div className='min-w-13'>
+          <button
+            className='
+            w-12 h-12 rounded-full bg-black text-white
+            flex items-center justify-center shadow-lg
+            transition-transform duration-150 ease-out
+            hover:scale-105
+            disabled:opacity-50
+            disabled:pointer-events-none
+            active:scale-90
+            disabled:active:scale-100'
+            onClick={() => setPlaying(p => !p)}
+            disabled={!audioUrl}
+          >
+            {playing ? <PauseIcon /> : <PlayArrowIcon />}
+          </button>
+        </div>
       </div>
 
       <audio ref={audioRef} />
