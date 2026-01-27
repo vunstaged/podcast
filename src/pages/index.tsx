@@ -50,4 +50,4 @@ const IndexPage: FC<PageProps> = () => {
 
 export default IndexPage
 
-export const Head: HeadFC = () => <title>VUnstaged</title>
+export const Head: HeadFC = () => <title>VUnstaged Podcast</title>
