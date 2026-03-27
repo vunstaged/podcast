@@ -1,5 +1,6 @@
 import React from 'react'
 import { Episode } from '@shared/interfaces/general'
+import { getFormattedDate } from '@shared/utils'
 
 type PodcastStatsProps = {
   totalEpisodes: number
@@ -24,7 +25,9 @@ const PodcastStats = ({ totalEpisodes, latestEpisode }: PodcastStatsProps) => {
         </div>
         <div className='flex justify-between'>
           <span className='text-gray-600'>Release Date</span>
-          <span className='font-semibold'>{latestEpisode.publishedAt}</span>
+          <span className='font-semibold'>
+            {getFormattedDate(latestEpisode.publishedAt)}
+          </span>
         </div>
       </div>
     </div>

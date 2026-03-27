@@ -1,3 +1,5 @@
+import { data } from 'autoprefixer'
+
 type MeasureFn = {
   (text: string, font: string): number
   canvas?: HTMLCanvasElement
@@ -81,3 +83,10 @@ export const getAudioDuration = (url: string): Promise<number> => {
     })
   })
 }
+
+export const getFormattedDate = (date: string) =>
+  new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
