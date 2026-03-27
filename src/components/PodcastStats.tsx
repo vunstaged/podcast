@@ -23,8 +23,8 @@ const PodcastStats = ({ totalEpisodes, latestEpisode }: PodcastStatsProps) => {
           </span>
         </div>
         <div className='flex justify-between'>
-          <span className='text-gray-600'>Next Release</span>
-          <span className='font-semibold'>Every Friday</span>
+          <span className='text-gray-600'>Release Date</span>
+          <span className='font-semibold'>{latestEpisode.publishedAt}</span>
         </div>
       </div>
     </div>
