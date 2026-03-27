@@ -54,7 +54,10 @@ const EpisodesList = ({
             className='bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition'
           >
             <div className='flex items-center justify-between'>
-              <h3 className='text-xl font-semibold'>{episode.title}</h3>
+              <h3 className='text-xl font-semibold'>
+                Ep. {episode.number} — {episode.hosts.join(', ')} &{' '}
+                {episode.guests.join(', ')}
+              </h3>
               <span className='text-sm text-gray-500'>
                 {durations[episode.id]
                   ? formatPayerTime(Math.floor(durations[episode.id]))

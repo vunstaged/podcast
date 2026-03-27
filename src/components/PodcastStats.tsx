@@ -17,7 +17,10 @@ const PodcastStats = ({ totalEpisodes, latestEpisode }: PodcastStatsProps) => {
         </div>
         <div className='flex justify-between'>
           <span className='text-gray-600'>Latest</span>
-          <span className='font-semibold'>{latestEpisode.title}</span>
+          <span className='font-semibold'>
+            Ep. {latestEpisode.number}, {latestEpisode.hosts.join(', ')} &{' '}
+            {latestEpisode.guests.join(', ')}
+          </span>
         </div>
         <div className='flex justify-between'>
           <span className='text-gray-600'>Next Release</span>

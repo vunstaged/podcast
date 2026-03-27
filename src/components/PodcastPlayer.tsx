@@ -128,7 +128,9 @@ const PodcastPlayer: FC<Props> = ({
 
         <div className='flex flex-col min-w-[180px]'>
           <div className='font-semibold'>
-            {episode?.title || 'Select an episode'}
+            {episode
+              ? `Ep. ${episode.number} — ${episode.hosts.join(', ')} & ${episode.guests.join(', ')}`
+              : 'Select an episode'}
           </div>
           <div className='text-sm text-gray-500'>
             <span
