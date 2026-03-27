@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import type { HeadFC, PageProps } from 'gatsby'
 import { Episode, Podcast } from '@shared/interfaces/general'
 import PodcastPlayer from '@components/PodcastPlayer'
@@ -6,15 +6,50 @@ import EpisodesList from '@components/EpisodesList'
 import PodcastStats from '@components/PodcastStats'
 import PodcastHero from '@components/PodcastHero'
 
-type PageData = {
-  podcast: Podcast
-}
+const PODCAST_JSON_URL = 'https://cdn.vunstaged.com/podcast/podcast.json'
 
-const IndexPage: FC<PageProps<{}, {}, {}, PageData>> = ({ serverData }) => {
-  const podcast = serverData.podcast
+const IndexPage: FC<PageProps> = () => {
+  const [podcast, setPodcast] = useState<Podcast | null>(null)
   const [activeEpisode, setActiveEpisode] = useState<Episode | null>(null)
   const [playing, setPlaying] = useState(false)
-  const episodes = podcast?.episodes ?? []
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchPodcast = async () => {
+      try {
+        const res = await fetch(PODCAST_JSON_URL)
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`)
+        const data: Podcast = await res.json()
+        setPodcast(data)
+      } catch (err: any) {
+        console.error('Failed to load podcast:', err)
+        setError('Failed to load podcast data')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    void fetchPodcast()
+  }, [])
+
+  if (loading) {
+    return (
+      <main className='min-h-screen flex items-center justify-center'>
+        <p className='text-gray-500'>Loading podcast...</p>
+      </main>
+    )
+  }
+
+  if (error || !podcast) {
+    return (
+      <main className='min-h-screen flex items-center justify-center'>
+        <p className='text-red-500'>{error || 'Podcast not available'}</p>
+      </main>
+    )
+  }
+
+  const episodes = podcast.episodes ?? []
   const totalEpisodes = episodes.length
   const latestEpisode = episodes[0]
 
@@ -58,29 +93,3 @@ const IndexPage: FC<PageProps<{}, {}, {}, PageData>> = ({ serverData }) => {
 export default IndexPage
 
 export const Head: HeadFC = () => <title>VUnstaged Podcast</title>
-
-export async function getServerData() {
-  try {
-    const res = await fetch('https://cdn.vunstaged.com/podcast/podcast.json')
-    const data: Podcast = await res.json()
-
-    return {
-      props: {
-        podcast: data
-      }
-    }
-  } catch (error) {
-    return {
-      props: {
-        podcast: {
-          description: '',
-          category: '',
-          language: '',
-          imageUrl: '',
-          links: {} as any,
-          episodes: []
-        }
-      }
-    }
-  }
-}
